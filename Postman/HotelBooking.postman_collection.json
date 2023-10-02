@@ -36,7 +36,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:5001/rooms",
+					"raw": "https://localhost:5000/rooms",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -69,7 +69,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:5001/rooms/0",
+					"raw": "https://localhost:5000/rooms/0",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -111,7 +111,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:5001/rooms/3",
+					"raw": "https://localhost:5000/rooms/3",
 					"protocol": "https",
 					"host": [
 						"localhost"
