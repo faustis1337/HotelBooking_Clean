@@ -217,6 +217,434 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Attempt booking in the past",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var customerId = 1;",
+							"pm.environment.set(\"customerId\", customerId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    pm.expect(pm.response.json().error).to.equal(\"The start date cannot be in the past or later than the end date.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"startDate\": \"2022-10-01T08:14:54.347Z\",\n  \"endDate\": \"2022-10-01T08:14:54.347Z\",\n  \"customerId\": {{customerId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create available booking",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var customerId = 1;",
+							"pm.environment.set(\"customerId\", customerId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"startDate\": \"2025-10-05T08:14:54.347Z\",\n  \"endDate\": \"2025-10-10T08:14:54.347Z\",\n  \"customerId\": {{customerId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create available booking before",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var customerId = 1;",
+							"pm.environment.set(\"customerId\", customerId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"startDate\": \"2025-09-05T08:14:54.347Z\",\n  \"endDate\": \"2025-09-10T08:14:54.347Z\",\n  \"customerId\": {{customerId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create available booking after",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var customerId = 1;",
+							"pm.environment.set(\"customerId\", customerId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"startDate\": \"2025-11-05T08:14:54.347Z\",\n  \"endDate\": \"2025-11-10T08:14:54.347Z\",\n  \"customerId\": {{customerId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attempt booking within reserved period",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var customerId = 1;",
+							"pm.environment.set(\"customerId\", customerId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    pm.expect(pm.response.json().error).to.equal(\"The booking could not be created. All rooms are occupied. Please try another period.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"startDate\": \"2025-10-06T08:14:54.347Z\",\n  \"endDate\": \"2025-10-09T08:14:54.347Z\",\n  \"customerId\": {{customerId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attempt booking overlapping reserved period",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var customerId = 1;",
+							"pm.environment.set(\"customerId\", customerId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    pm.expect(pm.response.json().error).to.equal(\"The booking could not be created. All rooms are occupied. Please try another period.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"startDate\": \"2025-10-04T08:14:54.347Z\",\n  \"endDate\": \"2025-10-11T08:14:54.347Z\",\n  \"customerId\": {{customerId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attempt booking overlapping reserved period with start date",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var customerId = 1;",
+							"pm.environment.set(\"customerId\", customerId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    pm.expect(pm.response.json().error).to.equal(\"The booking could not be created. All rooms are occupied. Please try another period.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"startDate\": \"2025-10-08T08:14:54.347Z\",\n  \"endDate\": \"2025-10-15T08:14:54.347Z\",\n  \"customerId\": {{customerId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attempt booking overlapping reserved period with end date",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var customerId = 1;",
+							"pm.environment.set(\"customerId\", customerId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    pm.expect(pm.response.json().error).to.equal(\"The booking could not be created. All rooms are occupied. Please try another period.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"startDate\": \"2025-10-03T08:14:54.347Z\",\n  \"endDate\": \"2025-10-08T08:14:54.347Z\",\n  \"customerId\": {{customerId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Bookings"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
