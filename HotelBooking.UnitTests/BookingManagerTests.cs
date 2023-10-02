@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using HotelBooking.Core;
+using HotelBooking.Core.BindingModels;
 using HotelBooking.Core.Entities;
 using HotelBooking.Core.Exceptions;
 using HotelBooking.Core.Interfaces;
@@ -22,7 +24,7 @@ namespace HotelBooking.UnitTests
             IRepository<Customer> customerRepository = new FakeCustomerRepository();
             bookingManager = new BookingManager(bookingRepository, roomRepository,customerRepository);
         }
-
+        #region FindAvailableRoom
         [Fact]
         public void FindAvailableRoom_StartDateNotInTheFuture_ThrowsRestException()
         {
@@ -107,6 +109,93 @@ namespace HotelBooking.UnitTests
             // Assert
             Assert.NotEqual(-1, roomId);
         }
+
+
+        #endregion
+
+        #region CreateBooking
+        [Fact]
+        public void BookingManager_CreateBooking_ReturnTrue()
+        {
+            //Arrange
+            DateTime startDate = DateTime.Today.AddDays(30);
+            DateTime finishDate = startDate.AddDays(5);
+
+            var model = new BookingPostBindingModel
+            {
+                CustomerId = 1,
+                StartDate = startDate,
+                EndDate = finishDate,
+            };
+            //Act
+            bool result = bookingManager.CreateBooking(model);
+            //Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void BookingManager_CreateBooking_ReturnFalse()
+        {
+            //Arrange
+            DateTime startDate = DateTime.Today.AddDays(11);
+            DateTime finishDate = DateTime.Today.AddDays(12);
+            
+
+            var model = new BookingPostBindingModel
+            {
+                CustomerId = 1,
+                StartDate = startDate,
+                EndDate = finishDate,
+            };
+            //Act
+            bool result = bookingManager.CreateBooking(model);
+            //Assert
+            Assert.False(result);
+        }
+
+        #endregion
+
+        #region GetFullyOccupiedDates
+        [Fact]
+        public void BookingManager_GetFullyOccupiedDates_ThrowArgumentException()
+        {
+            // Arrange
+            DateTime startDate = DateTime.Today.AddDays(5);
+            DateTime endDate = DateTime.Today.AddDays(2);
+
+            // Act and Assert
+            Assert.Throws<HotelBooking.Core.Exceptions.RestException>(() =>
+            {
+                bookingManager.GetFullyOccupiedDates(startDate, endDate);
+            });
+        }
+
+        [Fact]
+        public void BookingManager_GetFullyOccupiedDates_ReturnsEmptyList()
+        {
+            //Arrange
+            DateTime startDate = DateTime.Today.AddDays(21);
+            DateTime endDate = DateTime.Today.AddDays(25);
+            //Act
+            List<DateTime> fullyOccupiedDates = bookingManager.GetFullyOccupiedDates(startDate, endDate);
+            //Assert
+            Assert.Empty(fullyOccupiedDates);
+        }
+
+        [Fact]
+        public void BookingManager_GetFullyOccupiedDates_ReturnsListCount10()
+        {
+            //Arrange
+            DateTime startDate = DateTime.Today.AddDays(10);
+            DateTime endDate = DateTime.Today.AddDays(20);
+            //Act
+            List<DateTime> fullyOccupiedDates = bookingManager.GetFullyOccupiedDates(startDate, endDate);
+            //Assert
+            Assert.Equal(11, fullyOccupiedDates.Count);
+        }
+
+
+        #endregion
 
     }
 }
