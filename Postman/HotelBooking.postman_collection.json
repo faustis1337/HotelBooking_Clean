@@ -41,7 +41,7 @@
 					"host": [
 						"localhost"
 					],
-					"port": "5001",
+					"port": "5000",
 					"path": [
 						"rooms"
 					]
@@ -74,7 +74,7 @@
 					"host": [
 						"localhost"
 					],
-					"port": "5001",
+					"port": "5000",
 					"path": [
 						"rooms",
 						"0"
@@ -116,7 +116,7 @@
 					"host": [
 						"localhost"
 					],
-					"port": "5001",
+					"port": "5000",
 					"path": [
 						"rooms",
 						"3"
