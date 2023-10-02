@@ -37,7 +37,7 @@
 				"header": [],
 				"url": {
 					"raw": "https://localhost:5000/rooms",
-					"protocol": "https",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -70,7 +70,7 @@
 				"header": [],
 				"url": {
 					"raw": "https://localhost:5000/rooms/0",
-					"protocol": "https",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -112,7 +112,7 @@
 				"header": [],
 				"url": {
 					"raw": "https://localhost:5000/rooms/3",
-					"protocol": "https",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
