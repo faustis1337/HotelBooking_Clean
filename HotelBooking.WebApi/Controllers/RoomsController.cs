@@ -49,10 +49,10 @@ namespace HotelBooking.WebApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            /*var room = repository.Get(id);
+            var room = repository.Get(id);
             if (room == null) {
                 throw new RestException(HttpStatusCode.NotFound, "Room not found");
-            }*/
+            }
             repository.Remove(id);
             return NoContent();
         }
