@@ -219,6 +219,70 @@
 			"response": []
 		},
 		{
+			"name": "Delete room 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.sendRequest(\"http://localhost:5000/Rooms/3\", function (err, response) {",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/Rooms/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Rooms",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete room 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.sendRequest(\"http://localhost:5000/Rooms/3\", function (err, response) {",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/Rooms/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Rooms",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Attempt booking in the past",
 			"event": [
 				{

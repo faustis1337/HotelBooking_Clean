@@ -34,7 +34,9 @@ namespace HotelBooking.Infrastructure
 
             List<Room> rooms = new List<Room>
             {
-                new Room { Description="A" }
+                new Room { Description="A" },
+                new Room { Description="B" },
+                new Room { Description="C" }
             };
 
             DateTime date = DateTime.Today.AddDays(4);
