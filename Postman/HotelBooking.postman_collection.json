@@ -17,7 +17,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.sendRequest(\"http://localhost:5001/Rooms/3\", function (err, response) {",
+									"pm.sendRequest(\"http://localhost:5000/Rooms/3\", function (err, response) {",
 									"});"
 								],
 								"type": "text/javascript"
