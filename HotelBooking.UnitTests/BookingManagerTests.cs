@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using HotelBooking.Core;
 using HotelBooking.Core.BindingModels;
 using HotelBooking.Core.Entities;
@@ -7,6 +8,7 @@ using HotelBooking.Core.Exceptions;
 using HotelBooking.Core.Interfaces;
 using HotelBooking.Core.Services;
 using HotelBooking.UnitTests.Fakes;
+using Moq;
 using Xunit;
 
 namespace HotelBooking.UnitTests
@@ -14,15 +16,15 @@ namespace HotelBooking.UnitTests
     public class BookingManagerTests
     {
         private IBookingManager bookingManager;
-
+        private Mock<IRepository<Booking>> bookingRepository;
         public BookingManagerTests()
         {
             DateTime start = DateTime.Today.AddDays(10);
             DateTime end = DateTime.Today.AddDays(20);
-            IRepository<Booking> bookingRepository = new FakeBookingRepository(start, end);
+            bookingRepository = new();
             IRepository<Room> roomRepository = new FakeRoomRepository();
             IRepository<Customer> customerRepository = new FakeCustomerRepository();
-            bookingManager = new BookingManager(bookingRepository, roomRepository,customerRepository);
+            bookingManager = new BookingManager(bookingRepository.Object, roomRepository,customerRepository);
         }
         #region FindAvailableRoom
         [Fact]
@@ -183,11 +185,17 @@ namespace HotelBooking.UnitTests
         }
 
         [Fact]
-        public void BookingManager_GetFullyOccupiedDates_ReturnsListCount11()
+        public void BookingManager_GetFullyOccupiedDates_ReturnsListCount3()
         {
             //Arrange
             DateTime startDate = DateTime.Today.AddDays(10);
-            DateTime endDate = DateTime.Today.AddDays(20);
+            DateTime endDate = DateTime.Today.AddDays(13);
+
+            bookingRepository.Setup(x => x.GetAll().Where(b => b.IsActive).ToList()).Returns(new List<Booking> {
+                new Booking { Id = 1,},
+                new Booking { Id = 2,},
+                new Booking { Id = 3,}
+            }) ;
             //Act
             List<DateTime> fullyOccupiedDates = bookingManager.GetFullyOccupiedDates(startDate, endDate);
             //Assert
