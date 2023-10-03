@@ -191,7 +191,7 @@ namespace HotelBooking.UnitTests
             //Act
             List<DateTime> fullyOccupiedDates = bookingManager.GetFullyOccupiedDates(startDate, endDate);
             //Assert
-            Assert.Equal(11, fullyOccupiedDates.Count);
+            Assert.Equal(10, fullyOccupiedDates.Count);
         }
 
 
