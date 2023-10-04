@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using HotelBooking.Core;
 using HotelBooking.Core.BindingModels;
 using HotelBooking.Core.Entities;
@@ -7,6 +8,7 @@ using HotelBooking.Core.Exceptions;
 using HotelBooking.Core.Interfaces;
 using HotelBooking.Core.Services;
 using HotelBooking.UnitTests.Fakes;
+using Moq;
 using Xunit;
 
 namespace HotelBooking.UnitTests
@@ -14,18 +16,47 @@ namespace HotelBooking.UnitTests
     public class BookingManagerTests
     {
         private IBookingManager bookingManager;
+        private Mock<IRepository<Booking>> bookingRepository;
+        private Mock<IRepository<Room>> roomRepository;
+        private Mock<IRepository<Customer>> customerRepository;
 
         public BookingManagerTests()
         {
-            DateTime start = DateTime.Today.AddDays(10);
-            DateTime end = DateTime.Today.AddDays(20);
-            IRepository<Booking> bookingRepository = new FakeBookingRepository(start, end);
-            IRepository<Room> roomRepository = new FakeRoomRepository();
-            IRepository<Customer> customerRepository = new FakeCustomerRepository();
-            bookingManager = new BookingManager(bookingRepository, roomRepository,customerRepository);
-        }
-        #region FindAvailableRoom
-        [Fact]
+            customerRepository = new Mock<IRepository<Customer>>();
+            bookingRepository = new Mock<IRepository<Booking>>();
+            roomRepository = new Mock<IRepository<Room>>();
+
+            var customers = new List<Customer>
+            {
+                new Customer { Id=1, Name= "Bo Benson" , Email = "BB@mail.com"},
+                new Customer { Id=2, Name= "Joe Johnson" , Email = "JoJo@mail.com"},
+            };
+
+            var rooms = new List<Room>
+            {
+                new Room { Id=1, Description="A" },
+                new Room { Id=2, Description="B" },
+            };
+
+            DateTime fullyOccupiedStartDate = DateTime.Today.AddDays(10);
+            DateTime fullyOccupiedEndDate = DateTime.Today.AddDays(20);
+
+            List<Booking> bookings = new List<Booking>
+            {
+                new Booking { Id=1, StartDate=fullyOccupiedStartDate, EndDate=fullyOccupiedEndDate, IsActive=true, CustomerId=1, RoomId=1 },
+                new Booking { Id=2, StartDate=fullyOccupiedStartDate, EndDate=fullyOccupiedEndDate, IsActive=true, CustomerId=2, RoomId=2 },
+            };
+
+
+
+            roomRepository.Setup(x => x.GetAll()).Returns(rooms);
+            bookingRepository.Setup(x => x.GetAll()).Returns(bookings);
+            //customerRepository.Setup(x => x.GetAll()).Returns(customers);
+            customerRepository.Setup(x => x.Get(It.IsAny<int>())).Returns(customers.FirstOrDefault);
+            bookingManager = new BookingManager(bookingRepository.Object, roomRepository.Object, customerRepository.Object);
+            }
+            #region FindAvailableRoom
+            [Fact]
         public void FindAvailableRoom_StartDateNotInTheFuture_ThrowsRestException()
         {
             // Arrange
