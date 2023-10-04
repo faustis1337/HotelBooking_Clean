@@ -8,7 +8,6 @@ using HotelBooking.Core.Entities;
 using HotelBooking.Core.Exceptions;
 using HotelBooking.Core.Interfaces;
 using HotelBooking.Core.Services;
-using HotelBooking.UnitTests.Fakes;
 using Moq;
 using Xunit;
 
@@ -237,7 +236,7 @@ namespace HotelBooking.UnitTests
         }
 
         [Fact]
-        public void BookingManager_GetFullyOccupiedDates_ReturnsListCount10()
+        public void BookingManager_GetFullyOccupiedDates_ReturnsListCount11()
         {
             //Arrange
             DateTime startDate = DateTime.Today.AddDays(10);
