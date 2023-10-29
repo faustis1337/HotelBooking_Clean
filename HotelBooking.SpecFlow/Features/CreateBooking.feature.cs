@@ -81,14 +81,14 @@ namespace HotelBooking.SpecFlow.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Booking is before the fully occupied date")]
+        [Xunit.SkippableFactAttribute(DisplayName="Booking is before today")]
         [Xunit.TraitAttribute("FeatureTitle", "Create Booking")]
-        [Xunit.TraitAttribute("Description", "Booking is before the fully occupied date")]
-        public virtual void BookingIsBeforeTheFullyOccupiedDate()
+        [Xunit.TraitAttribute("Description", "Booking is before today")]
+        public virtual void BookingIsBeforeToday()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Booking is before the fully occupied date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Booking is before today", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -110,26 +110,26 @@ namespace HotelBooking.SpecFlow.Features
             {
                 this.ScenarioStart();
 #line 7
-        testRunner.Given("Fully booked date period starts in 7 days and ends in 14 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        testRunner.Given("there are no fully booked dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-        testRunner.When("The user makes a booking that starts in 1 days and ends in 6 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("the user makes a booking that starts in -7 days and ends in -1 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
-        testRunner.Then("the booking is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the booking is not created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Booking is after the fully occupied date")]
+        [Xunit.SkippableFactAttribute(DisplayName="Booking is on a unoccupied day")]
         [Xunit.TraitAttribute("FeatureTitle", "Create Booking")]
-        [Xunit.TraitAttribute("Description", "Booking is after the fully occupied date")]
-        public virtual void BookingIsAfterTheFullyOccupiedDate()
+        [Xunit.TraitAttribute("Description", "Booking is on a unoccupied day")]
+        public virtual void BookingIsOnAUnoccupiedDay()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Booking is after the fully occupied date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Booking is on a unoccupied day", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 11
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -151,10 +151,10 @@ namespace HotelBooking.SpecFlow.Features
             {
                 this.ScenarioStart();
 #line 12
-        testRunner.Given("Fully booked date period starts in 1 days and ends in 7 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        testRunner.Given("there are no fully booked dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 13
-        testRunner.When("The user makes a booking that starts in 8 days and ends in 11 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("the user makes a booking that starts in 8 days and ends in 9 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
         testRunner.Then("the booking is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -163,14 +163,14 @@ namespace HotelBooking.SpecFlow.Features
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Booking is inside the fully occupied date")]
+        [Xunit.SkippableFactAttribute(DisplayName="Booking is just before the fully occupied date")]
         [Xunit.TraitAttribute("FeatureTitle", "Create Booking")]
-        [Xunit.TraitAttribute("Description", "Booking is inside the fully occupied date")]
-        public virtual void BookingIsInsideTheFullyOccupiedDate()
+        [Xunit.TraitAttribute("Description", "Booking is just before the fully occupied date")]
+        public virtual void BookingIsJustBeforeTheFullyOccupiedDate()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Booking is inside the fully occupied date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Booking is just before the fully occupied date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 16
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -192,13 +192,136 @@ namespace HotelBooking.SpecFlow.Features
             {
                 this.ScenarioStart();
 #line 17
-        testRunner.Given("Fully booked date period starts in 1 days and ends in 9 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        testRunner.Given("Fully booked date period starts in 8 days and ends in 14 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 18
-        testRunner.When("The user makes a booking that starts in 1 days and ends in 9 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("the user makes a booking that starts in 1 days and ends in 7 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 19
+        testRunner.Then("the booking is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Booking is inside the fully occupied date")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create Booking")]
+        [Xunit.TraitAttribute("Description", "Booking is inside the fully occupied date")]
+        public virtual void BookingIsInsideTheFullyOccupiedDate()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Booking is inside the fully occupied date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 21
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 22
+        testRunner.Given("Fully booked date period starts in 1 days and ends in 9 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 23
+        testRunner.When("the user makes a booking that starts in 1 days and ends in 9 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 24
         testRunner.Then("the booking is not created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Booking is just after the fully occupied date")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create Booking")]
+        [Xunit.TraitAttribute("Description", "Booking is just after the fully occupied date")]
+        public virtual void BookingIsJustAfterTheFullyOccupiedDate()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Booking is just after the fully occupied date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 26
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 27
+        testRunner.Given("Fully booked date period starts in 1 days and ends in 7 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 28
+        testRunner.When("the user makes a booking that starts in 8 days and ends in 11 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 29
+        testRunner.Then("the booking is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Booking is overlapping the fully occupied date")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create Booking")]
+        [Xunit.TraitAttribute("Description", "Booking is overlapping the fully occupied date")]
+        public virtual void BookingIsOverlappingTheFullyOccupiedDate()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Booking is overlapping the fully occupied date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 31
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 32
+        testRunner.Given("Fully booked date period starts in 1 days and ends in 7 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 33
+        testRunner.When("the user makes a booking that starts in 8 days and ends in 11 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 34
+        testRunner.Then("the booking is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -1,6 +1,7 @@
 using HotelBooking.Core;
 using HotelBooking.Core.BindingModels;
 using HotelBooking.Core.Entities;
+using HotelBooking.Core.Exceptions;
 using HotelBooking.Core.Interfaces;
 using HotelBooking.Core.Services;
 using Moq;
@@ -51,6 +52,12 @@ public class CreateBookingSteps {
 
     #region Arrange
     
+    [Given(@"there are no fully booked dates")]
+    public void GivenThereAreNoFullyBookedDates()
+    {
+        bookingRepository.Setup(x => x.GetAll()).Returns(new List<Booking>());
+    }
+    
     [Given(@"Fully booked date period starts in (.*) days and ends in (.*) days")]
     public void GivenFullyBookedDatePeriodStartsInDaysAndEndsInDays(int p0, int p1)
     {
@@ -79,11 +86,15 @@ public class CreateBookingSteps {
     [When(@"the user makes a booking that starts in (.*) days and ends in (.*) days")]
     public void WhenTheUserMakesABookingThatStartsInDaysAndEndsInDays(int p0, int p1)
     {
-        bookingManager.CreateBooking(new BookingPostBindingModel {
-            StartDate = DateTime.Today.AddDays(p0),
-            EndDate = DateTime.Today.AddDays(p1),
-            CustomerId = 3
-        });
+        try {
+            bookingManager.CreateBooking(new BookingPostBindingModel {
+                StartDate = DateTime.Today.AddDays(p0),
+                EndDate = DateTime.Today.AddDays(p1),
+                CustomerId = 3
+            });
+        } catch (RestException e) { // When a restException is thrown, it means the user did an invalid action and was notified via a Toast in the UI
+        }
+        
     }
     
     #endregion
