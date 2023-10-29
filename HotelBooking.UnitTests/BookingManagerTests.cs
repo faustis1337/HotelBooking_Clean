@@ -145,6 +145,7 @@ namespace HotelBooking.UnitTests
         #endregion
 
         #region CreateBooking
+        
         [Fact]
         public void BookingManager_CreateBooking_ReturnTrue()
         {
