@@ -75,8 +75,8 @@ public class CreateBookingSteps {
         });
     }
     
-    [When(@"The user makes a booking that starts in (.*) day and ends in (.*) days")]
-    public void WhenTheUserMakesABookingThatStartsInDayAndEndsInDays(int p0, int p1)
+    [When(@"The user makes a booking that starts in (.*) days and ends in (.*) days")]
+    public void WhenTheUserMakesABookingThatStartsInDaysAndEndsInDays(int p0, int p1)
     {
         bookingManager.CreateBooking(new BookingPostBindingModel {
             StartDate = DateTime.Today.AddDays(p0),
@@ -85,10 +85,10 @@ public class CreateBookingSteps {
         });
     }
     
-    [Then(@"the booking is outside of fully occupied dates and is created")]
-    public void ThenTheBookingIsOutsideOfFullyOccupiedDatesAndIsCreated()
+    [Then(@"the booking is created")]
+    public void ThenTheBookingIsCreated()
     {
-        bookingRepository.Verify(repo => repo.Add(It.IsAny<Booking>()));
+        bookingRepository.Verify(repo => repo.Add(It.IsAny<Booking>()),Times.Once());
     }
     #endregion
 }
