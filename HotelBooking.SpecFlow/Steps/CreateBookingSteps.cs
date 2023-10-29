@@ -76,7 +76,7 @@ public class CreateBookingSteps {
     
     #region Act
     
-    [When(@"The user makes a booking that starts in (.*) days and ends in (.*) days")]
+    [When(@"the user makes a booking that starts in (.*) days and ends in (.*) days")]
     public void WhenTheUserMakesABookingThatStartsInDaysAndEndsInDays(int p0, int p1)
     {
         bookingManager.CreateBooking(new BookingPostBindingModel {
