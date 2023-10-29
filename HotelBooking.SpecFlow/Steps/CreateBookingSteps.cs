@@ -48,8 +48,8 @@ public class CreateBookingSteps {
         customerRepository.Setup(x => x.Get(3)).Returns(customers[2]);
     }
     #endregion
-    
-    #region Scenario: Booking is before the fully occupied date
+
+    #region Arrange
     
     [Given(@"Fully booked date period starts in (.*) days and ends in (.*) days")]
     public void GivenFullyBookedDatePeriodStartsInDaysAndEndsInDays(int p0, int p1)
@@ -72,6 +72,10 @@ public class CreateBookingSteps {
         });
     }
     
+    #endregion
+    
+    #region Act
+    
     [When(@"The user makes a booking that starts in (.*) days and ends in (.*) days")]
     public void WhenTheUserMakesABookingThatStartsInDaysAndEndsInDays(int p0, int p1)
     {
@@ -82,10 +86,19 @@ public class CreateBookingSteps {
         });
     }
     
+    #endregion
+    
+    #region Assert
     [Then(@"the booking is created")]
     public void ThenTheBookingIsCreated()
     {
         bookingRepository.Verify(repo => repo.Add(It.IsAny<Booking>()),Times.Exactly(1));
+    }
+    
+    [Then(@"the booking is not created")]
+    public void ThenTheBookingIsNotCreated()
+    {
+        bookingRepository.Verify(repo => repo.Add(It.IsAny<Booking>()),Times.Exactly(0));
     }
     #endregion
 }
