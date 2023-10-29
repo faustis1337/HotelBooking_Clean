@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
 using HotelBooking.Core;
 using HotelBooking.Core.BindingModels;
 using HotelBooking.Core.Entities;
 using HotelBooking.Core.Interfaces;
 using HotelBooking.Core.Services;
 using Moq;
-using TechTalk.SpecFlow;
-namespace HotelBooking.UnitTests.Specs.Steps;
+namespace HotelBooking.SpecFlow.Steps;
 
 [Binding]
 public class CreateBookingSteps {
@@ -88,7 +85,7 @@ public class CreateBookingSteps {
     [Then(@"the booking is created")]
     public void ThenTheBookingIsCreated()
     {
-        bookingRepository.Verify(repo => repo.Add(It.IsAny<Booking>()),Times.Once());
+        bookingRepository.Verify(repo => repo.Add(It.IsAny<Booking>()),Times.Exactly(1));
     }
     #endregion
 }
