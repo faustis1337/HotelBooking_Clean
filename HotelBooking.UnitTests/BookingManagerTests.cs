@@ -7,7 +7,6 @@ using HotelBooking.Core.Entities;
 using HotelBooking.Core.Exceptions;
 using HotelBooking.Core.Interfaces;
 using HotelBooking.Core.Services;
-using HotelBooking.UnitTests.Fakes;
 using Moq;
 using Xunit;
 
