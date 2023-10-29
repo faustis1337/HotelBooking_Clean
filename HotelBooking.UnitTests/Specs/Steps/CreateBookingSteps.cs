@@ -25,6 +25,7 @@ public class CreateBookingSteps {
         bookingManager = new BookingManager(bookingRepository.Object,roomRepository.Object,customerRepository.Object);
     }
 
+    #region Setup
     [BeforeScenario]
     public void SetupMocks()
     {
@@ -49,6 +50,7 @@ public class CreateBookingSteps {
         customerRepository.Setup(x => x.Get(2)).Returns(customers[1]);
         customerRepository.Setup(x => x.Get(3)).Returns(customers[2]);
     }
+    #endregion
     
     #region Scenario: Booking is before the fully occupied date
     
