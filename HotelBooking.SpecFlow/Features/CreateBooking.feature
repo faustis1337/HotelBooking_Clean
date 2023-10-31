@@ -29,9 +29,19 @@ Feature: Create Booking
         Then the booking is created
         
     Scenario: Booking is overlapping the fully occupied date
-        Given Fully booked date period starts in 1 days and ends in 7 days
-        When the user makes a booking that starts in 8 days and ends in 11 days
+        Given Fully booked date period starts in 3 days and ends in 7 days
+        When the user makes a booking that starts in 2 days and ends in 11 days
         Then the booking is created
+
+    Scenario: Booking is overlapping occupied date's start day
+        Given Fully booked date period starts in 3 days and ends in 7 days
+        When the user makes a booking that starts in 2 days and ends in 5 days
+        Then the booking is not created
+
+    Scenario: Booking is overlapping the occupied date's end day
+        Given Fully booked date period starts in 1 days and ends in 7 days
+        When the user makes a booking that starts in 6 days and ends in 11 days
+        Then the booking is not created
     
     
         
