@@ -69,17 +69,14 @@ namespace HotelBooking.Core.Services
 
             if (bookings.Any())
             {
-                for (DateTime d = startDate; d <= endDate; d = d.AddDays(1))
+                for (var d = startDate; d <= endDate; d = d.AddDays(1))
                 {
-                    var noOfBookings = from b in bookings
-                                       where b.IsActive && d >= b.StartDate && d <= b.EndDate
-                                       select b;
-                    if (noOfBookings.Count() >= noOfRooms)
+                    var noOfBookings = bookings.Where(b => b.IsActive && d >= b.StartDate && d <= b.EndDate);
+                    if (noOfBookings.Count() >= noOfRooms) 
                         fullyOccupiedDates.Add(d);
                 }
             }
             return fullyOccupiedDates;
         }
-
     }
 }

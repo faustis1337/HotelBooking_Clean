@@ -43,5 +43,18 @@ Feature: Create Booking
         When the user makes a booking that starts in 6 days and ends in 11 days
         Then the booking is not created
     
+    Scenario Outline: Create bookings
+        Given Fully booked date period starts in <BookedStart> days and ends in <BookedEnd> days
+        When the user makes a booking that starts in <BookingStart> days and ends in <BookingEnd> days
+        Then the booking is created: <Created>
+
+        Examples:
+          | BookedStart | BookedEnd | BookingStart | BookingEnd | Created |
+          | 8           | 14        | 1            | 7          | true    |
+          | 1           | 9         | 1            | 9          | false   |
+          | 1           | 7         | 8            | 11         | true    |
+          | 3           | 7         | 8            | 11         | true    |
+          | 3           | 7         | 2            | 5          | false   |
+          | 1           | 7         | 6            | 11         | false   |
     
         

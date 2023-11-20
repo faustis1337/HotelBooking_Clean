@@ -111,5 +111,17 @@ public class CreateBookingSteps {
     {
         bookingRepository.Verify(repo => repo.Add(It.IsAny<Booking>()),Times.Exactly(0));
     }
+    
+    [Then(@"the booking is created: true")]
+    public void ThenTheBookingIsCreatedTrue()
+    {
+        bookingRepository.Verify(repo => repo.Add(It.IsAny<Booking>()),Times.Exactly(1));
+    }
+    
+    [Then(@"the booking is created: false")]
+    public void ThenTheBookingIsCreatedFalse()
+    {
+        bookingRepository.Verify(repo => repo.Add(It.IsAny<Booking>()),Times.Exactly(0));
+    }
     #endregion
 }
